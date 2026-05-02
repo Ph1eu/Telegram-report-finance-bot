@@ -3,7 +3,7 @@ from datetime import datetime
 
 # ===== CONFIG =====
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")"
+CHAT_ID = os.getenv("CHAT_ID")
 
 def get_mock_data():
     return {
