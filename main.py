@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+import os
 
 # ===== CONFIG =====
 BOT_TOKEN = os.getenv("BOT_TOKEN")
