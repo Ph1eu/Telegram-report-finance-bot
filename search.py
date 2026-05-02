@@ -1,8 +1,10 @@
 import feedparser
+from urllib.parse import urlencode
 
 def search_news():
     query = "NHNN lãi suất liên ngân hàng OMO"
-    url = f"https://news.google.com/rss/search?q={query}&hl=vi&gl=VN&ceid=VN:vi"
+    params = {"q": query, "hl": "vi", "gl": "VN", "ceid": "VN:vi"}
+    url = "https://news.google.com/rss/search?" + urlencode(params)
 
     feed = feedparser.parse(url)
 

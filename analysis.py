@@ -1,9 +1,8 @@
-import google.generativeai as genai
 import os
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+from google import genai
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 def analyze_market(news_text):
     prompt = f"""
@@ -44,5 +43,8 @@ def analyze_market(news_text):
     ...
     """
 
-    response = model.generate_content(prompt)
+    response = _client.models.generate_content(
+        model="gemini-1.5-flash",
+        contents=prompt,
+    )
     return response.text
