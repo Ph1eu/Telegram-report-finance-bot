@@ -1,11 +1,11 @@
-import google.generativeai as genai
 import os
+from google import genai
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+# init client (chỉ tạo 1 lần)
+_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-model = genai.GenerativeModel("gemini-2.5-pro")
 
-def analyze_market(news_text):
+def analyze_market(news_text: str) -> str:
     prompt = f"""
 Bạn là một Macro Liquidity Analyst chuyên phân tích thị trường tài chính Việt Nam theo framework "bồn tín dụng".
 
@@ -73,7 +73,12 @@ QUY TẮC:
 - Viết như macro analyst (quỹ đầu tư)
 - Có reasoning (cause → effect)
 - Không viết kiểu báo chí
+- Nếu thiếu dữ liệu → phải nói rõ
 """
 
-    response = model.generate_content(prompt)
+    response = _client.models.generate_content(
+        model="gemini-2.5-pro",   # 🔥 model mạnh nhất
+        contents=prompt,
+    )
+
     return response.text
