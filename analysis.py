@@ -76,8 +76,10 @@ QUY TẮC:
 - Nếu thiếu dữ liệu → phải nói rõ
 """
 
+    # Pro has no free-tier quota (limit 0); Flash works on the free tier.
+    model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     response = _client.models.generate_content(
-        model="gemini-2.5-pro",   # 🔥 model mạnh nhất
+        model=model,
         contents=prompt,
     )
 
